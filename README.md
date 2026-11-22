@@ -102,6 +102,8 @@ Either way, it then restarts.
 
 Downloads come only from `github.com/Amirnajafi/ledge/releases` over HTTPS. Development builds (`tauri dev`) never update.
 
+To check right away, use **Settings → About → Check for updates**.
+
 Machines on the same tailnet can also pass a newer build to each other directly (Settings → About), which is handy for builds that aren't released yet.
 
 ## Build from source
@@ -156,10 +158,6 @@ src-tauri/src/  native side: audio, media keys, Meet, pen overlay, Tailscale syn
 brand/          icon source (ledge-icon.svg) → npx tauri icon brand/ledge-icon.png
 scripts/        release.sh
 ```
-
-## Credits
-
-Trackpad edge gestures are adapted from SlideSense (MIT). Built with [Tauri](https://tauri.app).
 
 ## License
 

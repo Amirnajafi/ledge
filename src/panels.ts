@@ -246,10 +246,12 @@ function generalTab(edge: Edge): string {
       <span class="meta">Shortcuts, toolbar, trackpad, mouse, pen, starred devices, dock position</span></span></button></div>`;
 }
 
-function aboutTab(sync: SyncSnapshot | null): string {
+function aboutTab(sync: SyncSnapshot | null, updateMsg: string): string {
   return `<h3>Version</h3>${updateRow(sync)}
-    <p class="hint">Updates install by themselves from any of your devices running a newer Ledge.</p>
-    <h3>Credits</h3><p class="hint">Trackpad edge gestures adapted from SlideSense (MIT).</p>`;
+    <div class="list"><button class="row" data-action="check-update"><span class="ico-sm">${icons.refresh}</span>
+      <span class="xfer-body"><span class="name">Check for updates</span>
+      <span class="meta">${esc(updateMsg || "Installs the latest release from GitHub and relaunches")}</span></span></button></div>
+    <p class="hint">Ledge also checks GitHub by itself at launch and every 12 hours.</p>`;
 }
 
 function settingsPanel(d: PanelData): string {
@@ -265,14 +267,14 @@ function settingsPanel(d: PanelData): string {
     trackpad: () => trackpadTab(d.trackpad, d.padZone, d.pads),
     draw: () => penTab(d.pen, d.drawing),
     permissions: () => permissionsList(d.perms),
-    about: () => aboutTab(d.sync),
+    about: () => aboutTab(d.sync, d.updateMsg),
   };
   return `<h2>Ledge <small>${esc(d.sync?.version ?? "")}</small><button class="quit-top" data-action="quit" title="Quit Ledge" aria-label="Quit Ledge">${icons.power}</button></h2>
     <div class="tabs" role="tablist">${tabs}</div>
     <div class="tab-body" role="tabpanel">${body[d.tab]()}</div>`;
 }
 
-export interface PanelData { audio: AudioState | null; sync: SyncSnapshot | null; edge: Edge; notice: string; camBig: boolean; filesTarget: string | null; transfers: Transfer[]; perms: Permission[] | null; prefs: Record<AudioKind, string>; shortcuts: Shortcuts; recording: ActionId | null; mouse: MouseSettings; mice: number | null; tab: SettingsTab; trackpad: PadSettings; padZone: PadZone; pads: number | null; pen: PenStyle; drawing: boolean; batteries: Battery[] | null; toolbar: ToolbarLayout }
+export interface PanelData { audio: AudioState | null; sync: SyncSnapshot | null; edge: Edge; notice: string; camBig: boolean; filesTarget: string | null; transfers: Transfer[]; perms: Permission[] | null; prefs: Record<AudioKind, string>; shortcuts: Shortcuts; recording: ActionId | null; mouse: MouseSettings; mice: number | null; tab: SettingsTab; trackpad: PadSettings; padZone: PadZone; pads: number | null; pen: PenStyle; drawing: boolean; batteries: Battery[] | null; toolbar: ToolbarLayout; updateMsg: string }
 
 export function panelHtml(id: PanelId, d: PanelData): string {
   switch (id) {

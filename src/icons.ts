@@ -33,5 +33,6 @@ export const icons = {
   mouse: svg(`<rect x="6.5" y="3" width="11" height="18" rx="5.5"/><path d="M12 6.5v3"/>`),
   trackpad: svg(`<rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M2.5 15.5h19" stroke-opacity=".45"/>`),
   shield: svg(`<path d="M12 3l7.5 3v5.5c0 4.5-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5-7.5-9.5V6z"/><path d="M9 12l2 2 4-4"/>`),
+  refresh: svg(`<path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3"/><path d="M19.5 4.5v4h-4"/>`),
   info: svg(`<circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.5h.01" stroke-width="2.2"/>`),
 };

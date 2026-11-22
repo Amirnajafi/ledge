@@ -43,6 +43,7 @@ export const api = {
   log: (msg: string): Promise<void> => invoke("log_line", { msg }),
   pushSettings: (json: string): Promise<string[]> => invoke("settings_push", { json }),
   meetCamera: (): Promise<string> => invoke("meet_camera"),
+  checkUpdate: (): Promise<string> => invoke("update_check"),
   /** Pen overlay on/off; a new style while on applies live. Returns whether it's on. */
   drawSet: (on: boolean, style: PenStyle): Promise<boolean> => invoke("draw_set", { on, style }),
   /** Returns how many Magic Mice are connected. */

@@ -159,6 +159,19 @@ fn update_from_github(app: &AppHandle) -> io::Result<bool> {
     Ok(true)
 }
 
+/// About → Check for updates. When a newer release installs, Ledge quits and relaunches on it.
+#[tauri::command(async)]
+pub fn update_check(app: AppHandle) -> Result<String, String> {
+    if cfg!(debug_assertions) {
+        return Err("development builds don't update".into());
+    }
+    match update_from_github(&app) {
+        Ok(true) => Ok("Updating… Ledge will relaunch".into()),
+        Ok(false) => Ok(format!("Ledge {VERSION} is the latest version")),
+        Err(e) => Err(e.to_string()),
+    }
+}
+
 /// Windows lets a running exe be renamed: move it aside, put the new one in its place, start it.
 #[cfg(windows)]
 fn install_exe(exe: &Path, new: &Path) -> io::Result<()> {

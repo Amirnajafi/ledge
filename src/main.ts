@@ -52,6 +52,7 @@ const state = {
   audio: null as AudioState | null,
   sync: null as SyncSnapshot | null,
   notice: "",
+  updateMsg: "", // About → Check for updates result
   camBig: load("camBig", "0") === "1",
   filesTarget: load("filesTarget", "") || null,
   transfers: [] as Transfer[],
@@ -648,10 +649,24 @@ panel.addEventListener("click", (e) => {
   else if (action === "cam-size") toggleCamSize(t);
   else if (action === "quit") void api.quit();
   else if (action === "sync-settings") void run(pushSettings);
+  else if (action === "check-update") void checkUpdate();
   else if (action === "update") installUpdate();
   else if (edge) setEdge(edge as Edge);
   else if (media === "play" || media === "next" || media === "prev") void run(() => api.media(media));
 });
+
+async function checkUpdate(): Promise<void> {
+  const show = (msg: string) => {
+    state.updateMsg = msg;
+    refreshPanelIf("settings");
+  };
+  show("Checking GitHub…");
+  try {
+    show(await api.checkUpdate());
+  } catch (e) {
+    show(`Couldn't check: ${errorText(e)}`);
+  }
+}
 
 async function pushSettings(): Promise<void> {
   const all = Object.fromEntries(SYNCED_KEYS.map((k) => [k, load(k, "")]).filter(([, v]) => v !== ""));

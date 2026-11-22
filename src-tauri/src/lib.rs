@@ -68,6 +68,7 @@ pub fn run() {
             sync::files_send,
             sync::settings_push,
             sync::update_from,
+            update::update_check,
             files::files_reveal,
             permissions::permissions,
             permissions::permission_open,

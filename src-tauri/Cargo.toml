@@ -1,6 +1,6 @@
 [package]
 name = "edge-dock"
-version = "0.1.19"
+version = "0.1.20"
 description = "Edge dock with mic, media, camera and clipboard sync"
 authors = ["you"]
 edition = "2024"

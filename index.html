@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/styles.css" />
+    <title>Ledge</title>
+    <script type="module" src="/src/main.ts" defer></script>
+  </head>
+  <body>
+    <div id="app" class="edge-left collapsed">
+      <button id="handle" class="handle" aria-label="Expand dock"><span class="handle-dot" aria-hidden="true"></span></button>
+      <nav id="bar" class="bar" aria-label="Ledge">
+        <button class="tool ghost" data-tool="collapse" title="Collapse"></button>
+        <button class="tool" data-tool="mic" title="Click: mute mic · Right-click: choose mic"></button>
+        <button class="tool" data-tool="speaker" title="Click: mute output · Right-click: choose output"></button>
+        <button class="tool" data-tool="pen" title="Click: draw on screen · Right-click: pen settings"></button>
+        <button class="tool" data-tool="bluetooth" title="Bluetooth batteries"></button>
+        <button class="tool" data-tool="media" title="Click: play / pause · Right-click: previous / next"></button>
+        <button class="tool" data-tool="camera" title="Click: camera on / off in Google Meet · Right-click: mirror"></button>
+        <button class="tool" data-tool="clipboard" title="Clipboard sync over Tailscale"></button>
+        <button class="tool" data-tool="files" title="Send files to another device"></button>
+        <span class="sep" data-tools-end aria-hidden="true"></span>
+        <button class="tool ghost" data-tool="settings" title="Dock settings"></button>
+        <button class="tool ghost grip" data-tool="grip" title="Drag to move the dock (any edge, any screen)"></button>
+      </nav>
+      <section id="panel" class="panel" hidden aria-live="polite"></section>
+    </div>
+  </body>
+</html>
